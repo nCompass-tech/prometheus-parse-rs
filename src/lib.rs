@@ -7,10 +7,10 @@ use std::collections::{BTreeMap, HashMap};
 use std::io;
 use std::ops::Deref;
 
-static HELP_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"^#\s+HELP\s+(\w+)\s+(.+)$").unwrap());
-static TYPE_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"^#\s+TYPE\s+(\w+)\s+(\w+)").unwrap());
+static HELP_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"^#\s+HELP\s+([^\s]+)\s+(.+)$").unwrap());
+static TYPE_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"^#\s+TYPE\s+([^\s]+)\s+(\w+)").unwrap());
 static SAMPLE_RE: Lazy<Regex> = Lazy::new(|| {
-    Regex::new(r"^(?P<name>\w+)(\{(?P<labels>[^}]+)\})?\s+(?P<value>\S+)(\s+(?P<timestamp>\S+))?")
+    Regex::new(r"^(?P<name>[^\s\{]+)(\{(?P<labels>[^\}]*)\})?\s+(?P<value>\S+)(\s+(?P<timestamp>\S+))?")
         .unwrap()
 });
 
